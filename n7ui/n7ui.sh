@@ -116,9 +116,12 @@ showMenu
 fi
 }
 function appyPatch {
-echo "Root is required for patch application"
-echo "Attempting to mount /system/"
-$adblocation shell su mount -o rw,remount /dev/block/mmcblk0p1 /system
+echo "Root is required for pushing patched file"
+echo "Rebooting into recovery! When recovery loads, press [ENTER]"
+$adblocation reboot recovery
+read halt
+echo "Remounting /system/"
+$adblocation remount
 echo "Pushing build.prop onto device"
 $adblocation push build.prop /system/build.prop
 showMenu
