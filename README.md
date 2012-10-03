@@ -1,8 +1,4 @@
-Android related code here
-----------------------------------------------------
-
-Repo contents:
--------------------------
+Android repo. Any android related code or projects will be put here.
 
 grouper (Nexus 7):
 -------------------
