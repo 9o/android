@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "---------------------------------------------------------------------------------
-Nexus 7 Simple Root Bash Script (v1.2)		   
+Nexus 7 Simple Root Bash Script (v1.3)		   
 Made by @Complex360 (cyr0s (@Complex360) && brando56894)	   
 ---------------------------------------------------------------------------------"
 echo
@@ -69,7 +69,7 @@ if [[ $choice == "c" ]]
     echo "Everything is done! to install SuperSU, load into CWM and choose it from the \"install zip from sdcard\" menu"
   else
     echo "Flashing TWRP..."
-    $fastbootlocation flash recovery ./files/twrp-2.2.1.5.img
+    $fastbootlocation flash recovery ./files/twrp.img
     echo "TWRP flashed with fastboot!"
     echo "Everything is done! to install SuperSU, load into TWRP and choose it from the \"install\" menu"
 fi
