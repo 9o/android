@@ -44,7 +44,6 @@ if [[ -x /usr/bin/fastboot ]]
   echo "Please enter the directory (WITHOUT TRAILING FORWARD SLASH) which contains fastboot"
   read fb
   fastbootlocation="$fb/fastboot"
-  echo $adblocation
 fi
 fi
 
