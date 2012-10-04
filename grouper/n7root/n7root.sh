@@ -24,12 +24,10 @@ if [[ -x /usr/bin/adb ]]
     adblocation=./files/adb
     #File permission fix - Thanks to Mark Lord
     sudo chmod a+rx files/adb
-    echo "Fixed and using bundled adb"
   else
   echo "Please enter the directory (WITHOUT TRAILING FORWARD SLASH) which contains adb"
   read adb
   adblocation="$adb/adb"
-  echo $adblocation
 fi
 fi
 
