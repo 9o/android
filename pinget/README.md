@@ -2,6 +2,7 @@ pinget - Google Play Store PIN Vulnerability
 ----------------------------------------------
 
 *Vuln Author: zanderman112 && trter10*
+
 *Code Author: compl3x (@Complex360)*
 
 Folder Contents:
@@ -29,9 +30,11 @@ See the problem? Exactly. Whilst a thief would not be able to immediately start 
 
 Inside the /data/data/com.android.vending/shared_prefs/finsky.xml files, there is a xml value called pin_code, "What on earth could be stored here?" I hear you cry. Well, it's a plaintext copy of your Google Play Store pin. An example:
 
+<pre>
  <string name="pin_code">1337</string>
  <string name="account">compl3x@tormail.org</string>
- 
+</pre>
+
 So, it's perfectly possible for your pin to be extracted from your stolen device and be used to buy Jack & Jill (The best way of killing it is to starve it of what it needs to survive: money)
 
 
