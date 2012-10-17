@@ -8,4 +8,6 @@ n7ui   - Build.prop modifier for Google Nexus 7
 
 pinget:
 --------------------
-pinget is a bash script which extracts the secure pin from your Android device. This pin is used to protect a stolen or lost device being used to make purchases using stored credit/debit card data.
+pinget ita simple application which takes advantage of zanderman112 and trter10's findings about how the Google Play
+Store stores PIN data, and how horribly idiotic it is. For more information, check out the README.md in the pinget
+folder.
