@@ -25,9 +25,9 @@ if [[ -x /usr/bin/adb ]]
     #File permission fix - Thanks to Mark Lord
     sudo chmod a+rx files/adb
   else
-  echo "Please enter the directory (WITHOUT TRAILING FORWARD SLASH) which contains adb"
+  echo "Please enter the directory which contains adb"
   read adb
-  adblocation="$adb/adb"
+  adblocation=echo "${adb}/adb"
 fi
 fi
 
@@ -41,9 +41,9 @@ if [[ -x /usr/bin/fastboot ]]
     sudo chmod a+rx files/fastboot
     echo "Fixed and using bundled fastboot"
     else
-  echo "Please enter the directory (WITHOUT TRAILING FORWARD SLASH) which contains fastboot"
+  echo "Please enter the directory which contains fastboot"
   read fb
-  fastbootlocation="$fb/fastboot"
+  fastbootlocation="${fb}/fastboot"
 fi
 fi
 
