@@ -7,20 +7,12 @@ pinget - Google Play Store PIN Vulnerability
 
 Folder Contents:
 ----------------------------------------------
-
-**pinget-linux:**
-
 pinget.sh - Actual script to pull, extract and parse file to get account and pin
 
 test - Folder with example of parsing account and pin
 
 files - Contains adb binary if you don't aready have it
 
-**pinget-windows:**
-
-pinget-windows.exe - Compiled version of pinget for windows
-
-files - Contains adb binary if you don't have it
 
 What's up?
 ----------------------------------------------
