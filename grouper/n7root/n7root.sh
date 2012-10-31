@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "---------------------------------------------------------------------------------
-Nexus 7 Simple Root Bash Script (v1.4)		   
+Nexus 7 Simple Root Bash Script (v1.5)		   
 Made by @Complex360 (cyr0s (@Complex360) && brando56894)	   
 ---------------------------------------------------------------------------------"
 echo
