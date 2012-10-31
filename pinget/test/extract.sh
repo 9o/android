@@ -35,6 +35,6 @@ echo "
             Thanks to zanderman112 && trter10
             ---------------------------------------------------"
 
-grep '<string name="pin_code"' example_finsky.xml | cut -f2 -d">"|cut -f1 -d"<"
-grep '<string name="account"' example_finsky.xml | cut -f2 -d">"|cut -f1 -d"<"
+grep '<string name="pin_code"' finsky.xml | cut -f2 -d">"|cut -f1 -d"<"
+grep '<string name="account"' finsky.xml | cut -f2 -d">"|cut -f1 -d"<"
 
