@@ -4,6 +4,15 @@ Nexus 7 Simple Root Bash Script (v1.5)
 Made by @Complex360 (cyr0s (@Complex360) && brando56894)	   
 ---------------------------------------------------------------------------------"
 echo
+if [ ! -e files/clockworkmod ] && [ ! -e files/twrp.img ]; then
+	echo "Warning, recovery images not found!"
+	echo "Cancel now if you need to flash recovery images!"
+	read
+	hasRecovery=0
+else
+	hasRecovery=1
+fi
+
 #Checks if user is root
 if [[ "$(whoami)" != 'root'  ]];then
   echo "This script must be run as root!"
@@ -68,6 +77,12 @@ if [[ $unlock == "y" ]]
     echo "Once you get confirmation that the bootloader is unlocked, press [ENTER]..."
     read go2
 fi
+
+if [ $hasRecovery == 0 ]; then
+	echo "Done"
+	exit 0
+fi
+
 echo "Which recovery would you like to flash?"
 echo "(c) ClockWorkMod Recovery"
 echo "(t) Team Win Recovery Project"
