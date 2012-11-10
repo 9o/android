@@ -21,6 +21,6 @@ This tool effectively transplants the data from your existing WhatsApp installat
 After, WhatsApp **should work on your tablet!** No TitaniumBackup, no AppGuard modifications. At risk of being sued by Apple *"it just works"*.
 
 
-Alas, it is here that I must shake my digital, Github markdown formatted donation box. If this has worked where the needlessly convoluted didn't, and you now have WhatsApp working, please consider donating to me via Paypal:
+Alas, it is here that I must shake my digital, Github markdown formatted donation box. If this has worked where the needlessly convoluted methods didn't, please consider donating to me via Paypal:
 
-**[Donate via Paypal](https://www.paypal.com)**
+**[Donate via Paypal](http://tinyurl.com/compl3xdonate)**
