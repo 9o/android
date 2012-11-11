@@ -8,11 +8,11 @@ fi
 if [[ -x /usr/bin/adb ]]
   then
     adblocation=/usr/bin/adb
-  else if [[ -x ./files/adb ]]; 
+  else if [[ -x ./adb ]]; 
   then
-    adblocation=./files/adb
+    adblocation=./adb
     #File permission fix - Thanks to Mark Lord
-    sudo chmod a+rx files/adb
+    sudo chmod a+rx adb
   else
   echo "Please enter the directory which contains adb"
   read adb
