@@ -1,5 +1,9 @@
 Android repo. Any android related code or projects will be put here.
 
+occam (Nexus 4):
+--------------------
+n4root - Unlock/Root tool for LG Nexus 4
+
 grouper (Nexus 7):
 --------------------
 n7root - Unlock/Flash/Root tool for Google Nexus 7
