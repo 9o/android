@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 
-namespace n4root
+namespace n4rootr
 {
     class Program
     {
@@ -83,7 +83,17 @@ namespace n4root
 
             //Booting with insecure boot.img for root access to /system/
             Console.WriteLine("Booting into insecure boot.img");
-            sendCMD("fastboot", "boot ./files/boot.img");
+            using (System.Diagnostics.Process procc = new System.Diagnostics.Process())
+            {
+                procc.EnableRaisingEvents = false;
+                procc.StartInfo.FileName = "./files/fastboot.exe";
+                procc.StartInfo.Arguments = "boot ./files/boot.img";
+                procc.StartInfo.RedirectStandardOutput = true;
+                procc.StartInfo.UseShellExecute = false;
+                procc.StartInfo.CreateNoWindow = false;
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+            }
             Console.WriteLine("Good news, you're almost done! WHen device loads, enable USB Debugging again and press [ENTER]");
             Console.ReadLine();
 
