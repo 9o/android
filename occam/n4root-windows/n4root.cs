@@ -49,7 +49,7 @@ namespace n4rootr
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("--------------------------------------------------------------------");
             Console.WriteLine("n4root - Nexus 4 rooting tool by cyr0s (XDA) @Complex360 (Twitter)");
-			Console.Writeline("MASSIVE props to Kumouri for making this tool actually helpful :)");
+            Console.WriteLine("MASSIVE props to Kumouri for making this tool actually helpful :)");
             Console.WriteLine("--------------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             using (System.Diagnostics.Process procc = new System.Diagnostics.Process())
@@ -165,14 +165,6 @@ namespace n4rootr
                 procc.Start();
                 Console.WriteLine(procc.StandardOutput.ReadToEnd());
             }
-			
-			//Old, broken code using sendCMD (it doesn't work, but if you can find out why then I'd love to know) 
-			
-            //sendCMD("adb", "shell mount -o remount,rw /system");
-            //sendCMD("adb", "push ./files/su /system/bin");
-            //sendCMD("adb", "push ./files/Superuser.apk /system/app");
-            //sendCMD("adb", "push ./files/busybox /system/xbin/");
-            //sendCMD("adb", "shell chmod 06755 /system/bin/su");
-            //sendCMD("adb", "shell chmod 0644 /system/app/Superuser.apk");
-            //sendCMD("adb", "shell chmod 04755 /system/xbin/busybox");
-            //sendCMD("adb", "shell cd /system/xbin/ && busybox -- install /system/xbin/");
+        }
+    }
+}
