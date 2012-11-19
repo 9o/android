@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +41,7 @@ namespace n4rootr
             {
                 if (!File.Exists("./files/" + file))
                 {
-                    MessageBox.Show("An essential file doesn't exist. Please re-download n4root and if that doesn't work contact me (@Complex360 or cyr0s on xda)","Fatal error");
+                    MessageBox.Show("An essential file doesn't exist. Please re-download n4root and if that doesn't work contact me (@Complex360 or cyr0s on xda)", "Fatal error");
                     System.Environment.Exit(0);
                 }
             }
@@ -49,6 +49,7 @@ namespace n4rootr
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("--------------------------------------------------------------------");
             Console.WriteLine("n4root - Nexus 4 rooting tool by cyr0s (XDA) @Complex360 (Twitter)");
+			Console.Writeline("MASSIVE props to Kumouri for making this tool actually helpful :)");
             Console.WriteLine("--------------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             using (System.Diagnostics.Process procc = new System.Diagnostics.Process())
@@ -63,7 +64,7 @@ namespace n4rootr
                 procc.WaitForExit();
                 Console.WriteLine(procc.StandardOutput.ReadToEnd());
             }
-            Console.ForegroundColor = ConsoleColor.Cyan ;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("If no devices are listed, please install Nexus 4 drivers.");
             Console.WriteLine("1)Go to Settings > Developer options\n2)Enable \"USB Debugging\" and then press [ENTER]");
             Console.ReadLine();
@@ -75,7 +76,21 @@ namespace n4rootr
             Console.ReadLine();
             Console.WriteLine("Attempting to unlock bootloader (when a prompt appears press YES - DATA WILL BE WIPED!)");
             sendCMD("fastboot", "oem unlock");
-            Console.WriteLine("When you have unlocked the bootloader, wait for reboot, enable USB debugging once more and press [ENTER]");
+            Console.WriteLine("When you have unlocked the bootloader, press [ENTER]");
+            Console.ReadLine();
+            // Reboots only seem to work through the process, not through sendCMD, so doing it here
+            using (System.Diagnostics.Process procc = new System.Diagnostics.Process())
+            {
+                procc.EnableRaisingEvents = false;
+                procc.StartInfo.FileName = "./files/fastboot.exe";
+                procc.StartInfo.Arguments = "reboot";
+                procc.StartInfo.RedirectStandardOutput = true;
+                procc.StartInfo.UseShellExecute = false;
+                procc.StartInfo.CreateNoWindow = false;
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+            }
+            Console.WriteLine("Wait for reboot, enable USB debugging once more and press [ENTER]");
             Console.ReadLine();
             sendCMD("adb", "reboot bootloader");
             Console.WriteLine("When bootloader loads press [ENTER]");
@@ -93,25 +108,71 @@ namespace n4rootr
                 procc.StartInfo.CreateNoWindow = false;
                 procc.Start();
                 Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                // Just force the reboot so the user doesn't get confused
+                procc.StartInfo.Arguments = "reboot";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
             }
-            Console.WriteLine("Good news, you're almost done! WHen device loads, enable USB Debugging again and press [ENTER]");
+            Console.WriteLine("Good news, you're almost done! When device loads, enable USB Debugging again and press [ENTER]");
             Console.ReadLine();
 
             //Sort out perms for su binary, SuperUser etc
-            sendCMD("adb", "shell mount -o remount,rw /system");
-            sendCMD("adb", "push ./files/su /system/bin");
-            sendCMD("adb", "push ./files/Superuser.apk /system/app");
-            sendCMD("adb", "push ./files/busybox /system/xbin/");
-            sendCMD("adb", "shell chmod 06755 /system/bin/su");
-            sendCMD("adb", "shell chmod 0644 /system/app/Superuser.apk");
-            sendCMD("adb", "shell chmod 04755 /system/xbin/busybox");
-            sendCMD("adb", "shell cd /system/xbin/ && busybox -- install /system/xbin/");
+            using (System.Diagnostics.Process procc = new System.Diagnostics.Process())
+            {
+                procc.EnableRaisingEvents = false;
+                procc.StartInfo.FileName = "./files/adb.exe";
+                procc.StartInfo.Arguments = "shell mount -o remount,rw /system";
+                procc.StartInfo.RedirectStandardOutput = true;
+                procc.StartInfo.UseShellExecute = false;
+                procc.StartInfo.CreateNoWindow = false;
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
 
-            //Pass round the collection plate
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Unless we've messed up somewhere, your device should now be rooted!");
-            Console.WriteLine("If I've helped you with this tool, please consider buying me some garlic bread: Paypal - michael.cowell3@gmail.com");
-            Console.ReadLine();
-        }
-    }
-}
+                // For some reason when I do it through the process instead of through sendCMD
+                // it works and when I reboot the SU app is there.
+                procc.StartInfo.Arguments = "push ./files/su /system/bin";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                procc.StartInfo.Arguments = "push ./files/Superuser.apk /system/app";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                procc.StartInfo.Arguments = "push ./files/busybox /system/xbin/";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                procc.StartInfo.Arguments = "shell chmod 06755 /system/bin/su";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                procc.StartInfo.Arguments = "shell chmod 0644 /system/app/Superuser.apk";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                procc.StartInfo.Arguments = "shell chmod 04755 /system/xbin/busybox";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                procc.StartInfo.Arguments = "shell cd /system/xbin/ && busybox --install /system/xbin/";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+
+                // Have to reboot for new system apps to show up, I think...
+                // It doesn't show up until a reboot on my device
+                procc.StartInfo.Arguments = "reboot";
+                procc.Start();
+                Console.WriteLine(procc.StandardOutput.ReadToEnd());
+            }
+			
+			//Old, broken code using sendCMD (it doesn't work, but if you can find out why then I'd love to know) 
+			
+            //sendCMD("adb", "shell mount -o remount,rw /system");
+            //sendCMD("adb", "push ./files/su /system/bin");
+            //sendCMD("adb", "push ./files/Superuser.apk /system/app");
+            //sendCMD("adb", "push ./files/busybox /system/xbin/");
+            //sendCMD("adb", "shell chmod 06755 /system/bin/su");
+            //sendCMD("adb", "shell chmod 0644 /system/app/Superuser.apk");
+            //sendCMD("adb", "shell chmod 04755 /system/xbin/busybox");
+            //sendCMD("adb", "shell cd /system/xbin/ && busybox -- install /system/xbin/");
