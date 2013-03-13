@@ -4,7 +4,7 @@ Nexus 7 Simple Root Bash Script (v1.6)
 Made by @Complex360 (cyr0s (@Complex360) && brando56894 && glemsom)	   
 ---------------------------------------------------------------------------------"
 echo
-if [ ! -e files/clockworkmod ] && [ ! -e files/twrp.img ]; then
+if [ ! -e files/clockworkmod.img ] && [ ! -e files/twrp.img ]; then
 	echo "Warning, recovery images not found!"
 	echo "Cancel now if you need to flash recovery images!"
 	read
