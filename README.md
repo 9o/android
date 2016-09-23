@@ -1,4 +1,4 @@
-Android repo. Any android related code or projects will be put here.
+# This repository has only old tools - DO NOT USE THEM
 
 occam (Nexus 4):
 --------------------
